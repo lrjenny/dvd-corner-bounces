@@ -1,0 +1,47 @@
+<head>
+    <title>DVD Corners Forever</title>
+  </head>
+  <body style="margin: 0;">
+    <img 
+        id='img' 
+        width='200' 
+        height='97' 
+        src='dvd.png' 
+        style="padding: 10px; background-color: red; position: absolute;"
+    ></canvas>
+    <script>
+        const img = document.getElementById('img');
+        const slope = ((window.innerHeight - 117) / (window.innerWidth - 220))
+        const speed = 1;
+        
+        let x = 0, y = 0
+        function step() {
+            if (img.style.backgroundColor === 'red') {
+                if (y < window.innerHeight - 117) {
+                    y += speed * slope;
+                    img.style.top = y
+                }
+                if (x < window.innerWidth - 220) {
+                    x += speed;
+                    img.style.left = x
+                } else {
+                    img.style.backgroundColor = 'blue'
+                }
+            } else {
+                if (y > 0) {
+                    y -= speed * slope;
+                    img.style.top = y
+                }
+                if (x > 0) {
+                    x -= speed;
+                    img.style.left = x
+                } else {
+                    img.style.backgroundColor = 'red'
+                }
+            }
+            window.requestAnimationFrame(step)
+        }
+        window.requestAnimationFrame(step)
+    </script>
+  </body>
+</html>
